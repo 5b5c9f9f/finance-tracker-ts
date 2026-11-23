@@ -1,32 +1,56 @@
-# React + TypeScript + Vite
+# Трекер финансов (React + TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Интерактивное веб-приложение для учета личных доходов и расходов, анализа баланса и фильтрации транзакций.
 
-Currently, two official plugins are available:
+## Основной функционал
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Подсчет баланса в реальном времени:** автоматический расчет общего баланса, суммы всех доходов и расходов за один проход по данным.
+* **Управление транзакциями:** добавление новых операций с выбором типа (доход/расход) и категории, а также удаление записей.
+* **Умная фильтрация и живой поиск:** мгновенное переключение между всеми операциями, доходами и расходами, а также поиск по названию или категории без потери данных основного счета.
+* **Сохранение данных:** автоматическая синхронизация с `localStorage` браузера — история операций сохраняется после перезагрузки страницы.
+* **Изолированная стилизация:** использование CSS Modules для предотвращения конфликтов стилей.
 
-## React Compiler
+## Технологический стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **React 19** (функциональные компоненты, хуки `useState`, `useEffect`)
+* **TypeScript** (строгая типизация пропсов, событий форм, Union Types и интерфейсов)
+* **Vite** (быстрая сборка и сервер разработки)
+* **CSS Modules** (модульная верстка без лишних зависимостей)
 
-## Expanding the Oxlint configuration
+## Структура проекта
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```text
+src/
+├── components/                 # Переиспользуемые компоненты интерфейса
+│   ├── BalanceCard.tsx         # Карточка сводки баланса, доходов и расходов
+│   ├── BalanceCard.module.css
+│   ├── TransactionFilters.tsx  # Панель вкладок фильтрации и строка поиска
+│   ├── TransactionFilters.module.css
+│   ├── TransactionForm.tsx     # Управляемая форма добавления новой операции
+│   ├── TransactionForm.module.css
+│   ├── TransactionList.tsx     # Список операций с форматированием и удалением
+│   └── TransactionList.module.css
+├── types/                      # Глобальные TypeScript-интерфейсы и типы
+│   └── finance.ts
+├── App.tsx                     # Главный компонент и управление состоянием
+├── App.css
+└── main.tsx                    # Точка входа приложения
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Запуск проекта локально
+
+1. **Клонируйте репозиторий:**
+   ```bash
+   git clone https://github.com
+   ```
+
+2. **Перейдите в папку проекта и установите зависимости:**
+   ```bash
+   cd finance-tracker-ts
+   npm install
+   ```
+
+3. **Запустите сервер для разработки:**
+   ```bash
+   npm run dev
+   ```
