@@ -1,0 +1,52 @@
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.tab {
+    padding: 8px 14px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #475569;
+    transition: all 0.2s;
+}
+
+.tab:hover {
+    background: #f8fafc;
+}
+
+.activeTab {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+.activeTab:hover {
+    background: #1d4ed8;
+}
+
+.searchInput {
+    padding: 8px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    min-width: 220px;
+    outline: none;
+}
+
+.searchInput:focus {
+    border-color: #2563eb;
+}
