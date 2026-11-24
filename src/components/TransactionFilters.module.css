@@ -1,8 +1,7 @@
 .filters {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    gap: 25px;
     margin-bottom: 16px;
     flex-wrap: wrap;
 }
@@ -43,7 +42,7 @@
     border: 1px solid #cbd5e1;
     border-radius: 8px;
     font-size: 14px;
-    min-width: 220px;
+    width: 100%;
     outline: none;
 }
 

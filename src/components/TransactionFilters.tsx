@@ -43,7 +43,7 @@ export function TransactionFilters({
 
             <input
                 type="text"
-                placeholder="Поиск по названию или категории..."
+                placeholder="Поиск"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
                 className={styles.searchInput}
