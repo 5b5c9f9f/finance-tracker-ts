@@ -1,6 +1,6 @@
 import { useState } from "react";
-import styles from "./TransactionForm.module.css";
 import type { Transaction, TransactionType } from "../../types/finance";
+import styles from "./TransactionForm.module.css";
 
 interface TransactionFormProps {
     onAddTransaction: (newTransaction: Transaction) => void;
@@ -12,16 +12,30 @@ export function TransactionForm({ onAddTransaction }: TransactionFormProps) {
     const [type, setType] = useState<TransactionType>("expense");
     const [category, setCategory] = useState("Еда");
 
+    const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (/^\d*\.?\d*$/.test(value)) {
+            setAmount(value);
+        }
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        const namericAmount = Number(amount);
-        if (!title.trim || namericAmount <= 0) return;
+        const numericAmount = Number(amount);
+
+        if (
+            !title.trim() ||
+            !Number.isFinite(numericAmount) ||
+            numericAmount <= 0
+        ) {
+            return;
+        }
 
         const newTransaction: Transaction = {
             id: Date.now().toString(),
             title: title.trim(),
-            amount: namericAmount,
+            amount: numericAmount,
             type,
             category,
             date: new Date().toISOString().split("T")[0],
@@ -36,42 +50,43 @@ export function TransactionForm({ onAddTransaction }: TransactionFormProps) {
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
             <input
-                className={styles.input}
                 type="text"
-                placeholder="Название"
+                placeholder="Название (например, Кофе)"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                className={styles.input}
                 required
             />
+
             <input
-                className={styles.input}
                 type="text"
+                inputMode="decimal"
                 placeholder="Сумма"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={handleAmountChange}
+                className={styles.input}
                 required
             />
 
             <select
-                className={styles.select}
                 value={type}
                 onChange={(e) => setType(e.target.value as TransactionType)}
+                className={styles.select}
             >
                 <option value="expense">Расход</option>
                 <option value="income">Доход</option>
             </select>
 
             <select
-                className={styles.select}
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
+                className={styles.select}
             >
                 <option value="Еда">Еда</option>
                 <option value="Транспорт">Транспорт</option>
                 <option value="Жилье">Жилье</option>
                 <option value="Развлечения">Развлечения</option>
                 <option value="Работа">Работа</option>
-                <option value="Одежда">Одежда</option>
                 <option value="Другое">Другое</option>
             </select>
 
