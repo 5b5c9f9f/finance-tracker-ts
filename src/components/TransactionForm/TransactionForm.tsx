@@ -51,7 +51,7 @@ export function TransactionForm({ onAddTransaction }: TransactionFormProps) {
         <form onSubmit={handleSubmit} className={styles.form}>
             <input
                 type="text"
-                placeholder="Название (например, Кофе)"
+                placeholder="Название"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className={styles.input}

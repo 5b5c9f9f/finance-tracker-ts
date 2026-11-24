@@ -40,7 +40,7 @@ export function TransactionList({
                                 }
                             >
                                 {item.type === "income" ? "+" : "-"}
-                                {item.amount.toLocaleString()} ₽
+                                {(item.amount ?? 0).toLocaleString()} ₽
                             </span>
 
                             <button
